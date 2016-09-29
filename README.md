@@ -24,31 +24,30 @@ initializer in `config/initializers/gridhook.rb`:
 Gridhook.configure do |config|
   # The path we want to receive events
   config.event_receive_path = '/sendgrid/event'
-
-  config.event_processor = proc do |event|
-    # event is a Gridhook::Event object
-    EmailEvent.create! event.attributes
-  end
+  
+  config.event_class = 'EmailEvent'
+  
+  config.processor_method = :process
 end
 ```
 
-The `config.event_processor` just needs to be any object that responds to
-`call()`. So, if you'd prefer to use a separate class, that's fine:
+The `config.event_class` will need to take a single argument: `event` as its only constructor argument.
+
+it must define either a `process` instance method, or alternatively you can supply your own in the configuration options with `processor_method`
 
 ```ruby
-class EventProcessor
-  def call(event)
-    # do some stuff with my event!
+class EmailEvent
+  def initialize(event)
   end
-end
-
-# config/initializers/gridhook.rb
-Gridhook.configure do |config|
-  config.event_processor = EventProcessor.new
+  
+  def process
+  end
 end
 ```
 
 ## Changelog
+v0.2.3 update engine to be more current. drop rails 3 support. Enable different configuration approach
+
 v0.2.2 Require decorators as dependency
 
 v0.2.1 Use built-in rails JSON parser.

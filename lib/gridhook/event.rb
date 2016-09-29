@@ -3,6 +3,7 @@ require 'active_support/core_ext/hash/except'
 module Gridhook
   class Event
 
+
     # Process a String or stream of JSON and execute our
     # event processor.
     #
@@ -56,15 +57,19 @@ module Gridhook
       end
 
       def process_event(event)
-        processor = Gridhook.config.event_processor
-        if processor.respond_to?(:call)
-          processor.call Event.new(event)
-        else
-          raise InvalidEventProcessor, "Your event processor is nil or "\
-            "does not response to a `call' method."
-        end
+       event_class.new(self.new(event)).public_send(processor_method)
+      end
+
+      def event_class
+        Gridhook.configuration.event_class
+      end
+
+      def processor_method
+        Gridhook.configuration.processor_method
       end
     end
 
+
   end
+
 end
