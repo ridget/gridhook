@@ -25,7 +25,7 @@ module Gridhook
         rescue NameError
           raise NameError.new(<<-ERROR.strip_heredoc, 'EmailProcessor')
             To use Gridhook, you must either define `EmailEvent` or configure a
-            different event class. See https://github.com/ridget/gridhook#defaults for
+            different event class. See https://github.com/ridget/gridhook#installation for
             more information.
           ERROR
         end

@@ -6,7 +6,7 @@ class ConfigurationTest < ActiveSupport::TestCase
       config.processor_method = :stuff_and_nonsense
     end
 
-    assert_equal :stuff_and_nonsense, Gridhook::configuration.processor_method
+    assert_equal :stuff_and_nonsense, Gridhook.configuration.processor_method
   end
 
 end
