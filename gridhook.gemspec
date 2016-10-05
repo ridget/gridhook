@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/ridget/gridhook'
   spec.license       = 'MIT'
 
-  spec.required_ruby_version = Gem::Requirement.new('>= 1.9.2')
+  spec.required_ruby_version = Gem::Requirement.new('>= 1.9.1')
 
   spec.files         = `git ls-files`.split($/)
 
