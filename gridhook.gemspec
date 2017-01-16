@@ -15,8 +15,8 @@ Gem::Specification.new do |s|
 
   s.files         = `git ls-files`.split($/)
 
-  s.add_dependency 'rails', '>= 4.2.0'
-  s.add_dependency "multi_json", '>= 1.12'
+  s.add_runtime_dependency 'rails', '~> 4.2'
+  s.add_runtime_dependency "multi_json", '~> 1.12'
 
-  s.add_development_dependency "pg"
+  s.add_development_dependency "pg", '~> 0'
 end
